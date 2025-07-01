@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // /路径下指定的是PagesController里的root方法，别名为root
-Route::get('/','PagesController@root')->name('root');
+Route::get('/','PagesController@root')->name('root')->middleware('verified');
 
 // Laravel 的用户认证路由
-Auth::routes();
+Auth::routes(['verify' => true]);
 

@@ -12024,3 +12024,14 @@ body {
 .footer .container p a {
   color: inherit;
 }
+
+.form-group {
+  margin-top: 20px;
+}
+.form-group label {
+  text-align: right;
+}
+
+.float-right {
+  float: right;
+}

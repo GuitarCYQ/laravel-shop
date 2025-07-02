@@ -45,4 +45,25 @@ class UserAddressesController extends Controller
         // 完成后跳转到主页
         return redirect()->route('user_addresses.index');
     }
+
+    public function edit(UserAddress $user_address)
+    {
+        return view('user_addresses.create_and_edit',['address' => $user_address]);
+    }
+
+    public function update(UserAddress $user_address, UserAddressRequest $request)
+    {
+        //找到user_address这个用户，进行数据的修改，UserAddressRequest这个是校验类
+        $user_address->update($request->only([
+            'province',
+            'city',
+            'district',
+            'address',
+            'zip',
+            'contact_name',
+            'contact_phone',
+        ]));
+
+        return redirect()->route('user_addresses.index');
+    }
 }

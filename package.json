@@ -24,6 +24,26 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "china-area-data": "^5.0.1"
-    }
+        "china-area-data": "^5.0.1",
+        "jquery": "^3.7.1",
+        "sweetalert": "^2.1.2"
+    },
+    "name": "laravel-shop",
+    "version": "1.0.0",
+    "description": "<<<<<<< HEAD\r # laravel-shop\r learnku里的Laravel-shop\r =======\r <p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\"></a></p>",
+    "main": "webpack.mix.js",
+    "directories": {
+        "test": "tests"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/GuitarCYQ/laravel-shop.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/GuitarCYQ/laravel-shop/issues"
+    },
+    "homepage": "https://github.com/GuitarCYQ/laravel-shop#readme"
 }

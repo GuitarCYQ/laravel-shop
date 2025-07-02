@@ -27,5 +27,6 @@ Route::group(['middleware' => ['auth','verified']],function() {
     Route::post('user_addresses', 'UserAddressesController@store')->name('user_addresses.store');
     route::get('user_addresses/{user_address}', 'UserAddressesController@edit')->name('user_addresses.edit');
     route::put('user_addresses/{user_address}', 'UserAddressesController@update')->name('user_addresses.update');
+    route::delete('user_addresses/{user_address}', 'UserAddressesController@destroy')->name('user_addresses.destroy');
 });
 

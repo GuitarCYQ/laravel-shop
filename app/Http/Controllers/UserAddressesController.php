@@ -15,7 +15,11 @@ class UserAddressesController extends Controller
         ]);
     }
 
-    // 添加页面
+    /**
+     * 添加页面
+     * 'address' => new UserAddress()] 传递一个空的UserAddress模型实现给视图
+     * 在视图中可以通过$address变量来访问这个空模型
+     */
     public function create()
     {
         return view('user_addresses.create_and_edit', ['address' => new UserAddress()]);
@@ -46,13 +50,25 @@ class UserAddressesController extends Controller
         return redirect()->route('user_addresses.index');
     }
 
+    // 修改view
     public function edit(UserAddress $user_address)
     {
+        /*
+        * 权限校验，没有权限不能修改
+        * 1.authorize('own', $user_address) 方法会获取第二个参数 $user_address 的类名App\Models\UserAddress
+        * 2.执行AuthServiceProvider类中定义的Gate::guessPolicyNamesUsing自动寻找类名逻辑，找到的类是App\Polices\UserAddressPolicy
+        * 3.实例化找到的UserAddressPolicy类，调用own()方法
+        */
+        $this->authorize('own', $user_address);
         return view('user_addresses.create_and_edit',['address' => $user_address]);
     }
 
+    // 修改操作
     public function update(UserAddress $user_address, UserAddressRequest $request)
     {
+        // 权限校验，没有权限不能修改
+        $this->authorize('own', $user_address);
+
         //找到user_address这个用户，进行数据的修改，UserAddressRequest这个是校验类
         $user_address->update($request->only([
             'province',
@@ -65,5 +81,14 @@ class UserAddressesController extends Controller
         ]));
 
         return redirect()->route('user_addresses.index');
+    }
+
+    // 删除
+    public function destroy(UserAddress $user_address)
+    {
+        $this->authorize('own', $user_address);
+        $user_address->delete();
+
+        return [];
     }
 }

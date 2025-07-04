@@ -2,7 +2,7 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/dist/css/bootstrap.css';
 
 /* universal */
 
@@ -76,9 +76,7 @@ body {
 
 //商品列表开始
 .products-index-page {
-  .pagination{
-    margin-right: 5px;
-  }
+
   .products-list {
     padding: 0 15px;
     .product-item {
@@ -136,5 +134,18 @@ body {
       }
     }
   }
+
+  // 搜索和排序
+  .search-form {
+    padding: 0 7px 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  // 分页
+  .pagination{
+    margin-right: 5px;
+  }
+
 }
 // 商品列表结束

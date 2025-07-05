@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth','verified']],function() {
     Route::delete('products/{product}/favorite', 'ProductsController@disfavor')->name('products.disfavor');
     Route::get('products/favorites', 'ProductsController@favorites')->name('products.favorites');
 
+    Route::post('cart', 'CartController@add')->name('cart.add');
+
 });
 
 // 这里的是不需要登录就能访问的

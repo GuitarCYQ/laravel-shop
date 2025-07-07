@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth','verified']],function() {
     Route::delete('cart/{sku}', 'CartController@remove')->name('cart.remove');
 
     Route::post('orders', 'OrdersController@store')->name('orders.store');
+    Route::get('orders', 'OrdersController@index')->name('orders.index');
 
 
 });
@@ -45,11 +46,3 @@ Route::group(['middleware' => ['auth','verified']],function() {
 Route::redirect('/', '/products')->name('root');
 Route::get('products', 'ProductsController@index')->name('products.index');
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
-Route::get('test-redis', function () {
-    try {
-        Redis::set('test_key', 'Hello Redis!');
-        return Redis::get('test_key');
-    } catch (\Exception $e) {
-        return 'Error: ' . $e->getMessage();
-    }
-});

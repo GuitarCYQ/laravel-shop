@@ -16,7 +16,8 @@
         "laravel/ui": "^3.0",
         "overtrue/laravel-lang": "*",
         "predis/predis": "^3.0",
-        "yansongda/pay": "2.10.2"
+        "symfony/psr-http-message-bridge": "^2.3",
+        "yansongda/pay": "^3.3"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

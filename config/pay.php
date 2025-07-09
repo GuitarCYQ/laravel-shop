@@ -8,23 +8,27 @@ return [
             // 「必填」支付宝分配的 app_id
             'app_id' =>  env('ALIPAY_APP_ID'),
             // 「必填」应用私钥 字符串或路径
-            // 在 https://open.alipay.com/develop/manage 《应用详情->开发设置->接口加签方式》中设置
             'app_secret_cert' => env('ALIPAY_SECRET_CERT'),
-            // 「必填」应用公钥证书 路径
-            // 设置应用私钥后，即可下载得到以下3个证书
+            // 设置应用私钥后，即可下载得到以
+            //「必填」应用公钥证书 路径,下3个证书
             'app_public_cert_path' => storage_path('cert/appPublicCert.crt'),
             // 「必填」支付宝公钥证书 路径
-            'alipay_public_cert_path' => storage_path('cert/alipayCertPublicKey_RSA2.crt'),
+            'alipay_public_cert_path' => storage_path('cert/alipayPublicCert.crt'),
             // 「必填」支付宝根证书 路径
             'alipay_root_cert_path' => storage_path('cert/alipayRootCert.crt'),
-            'return_url' => 'http://shop.test/alipay/return',
-            'notify_url' => 'http://shop.test/alipay/notify',
+            // 前端页面的回调，可以不填，在AppServiceProvider.php里面可以直接写
+            'return_url' => '',
+             // 服务器端的回调，可以不填，在AppServiceProvider.php里面可以直接写
+            'notify_url' => '',
+
+            // 「选填」默认为正常模式。可选为： 沙盒MODE_SANDBOX 正式MODE_NORMAL, MODE_SERVICE
+            'mode' => Pay::MODE_NORMAL,
+
             // 「选填」第三方应用授权token
             'app_auth_token' => '',
             // 「选填」服务商模式下的服务商 id，当 mode 为 Pay::MODE_SERVICE 时使用该参数
             'service_provider_id' => '',
-            // 「选填」默认为正常模式。可选为： MODE_NORMAL, MODE_SANDBOX, MODE_SERVICE
-            'mode' => Pay::MODE_NORMAL,
+
         ]
     ],
     'wechat' => [

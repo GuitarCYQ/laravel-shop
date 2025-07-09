@@ -41,6 +41,7 @@ class AppServiceProvider extends ServiceProvider
         //     return Pay::wechat($config);
         // });
 
+        // 读取config/pay.php里的配置
         $config = config('pay');
         //判断当前项目运行环境是否为线上环境
         if (app()->environment() !== 'production') {
@@ -50,10 +51,14 @@ class AppServiceProvider extends ServiceProvider
             $config['logger']['level'] = 'info';
         }
 
-        // 往服务容器中注入一个名为 alipay 的单例对象
-        $this->app->singleton('alipay', function() use ($config) {
+        // 往服务容器中注入一个名为 alipay 的单例对象 use ($config) 是继承前面$config设置的配置
+        $this->app->singleton('alipay', function() use ($config){
+            $config['alipay']['default']['notify_url']   = route('payment.alipay.notify');
+            $config['alipay']['default']['return_url']   = route('payment.alipay.return');
+            // dd($config);
             //调用Yansongda\Pay来创建一个支付宝支付对象
             return Pay::alipay($config);
+
         });
 
         $this->app->singleton('wechat_pay', function() use ($config) {

@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Excepations\InvalidRequestException;
+
+class PaymentController extends Controller
+{
+    // 支付宝支付
+    public function payByAlipay(Order $order, Request $request) {
+        // 判断订单是否属于当前用户
+        $this->authorize('own', $order);
+
+        //订单已支付或已关闭
+        if ($order->paid_at || $order->close) {
+            throw new InvalidRequestException('订单状态不正确');
+        }
+
+        // 调用支付宝的网页支付
+        return app('alipay')->web([
+            'out_trade_no' => $order->no, // 订单编号，需保证在商户端不重复
+            'total_amount' => $order->total_amount, // 订单金额，单位元，支持小数点后2位
+            'subject' => '支付 Laravel Shop 的订单：'.$order->no,
+        ]);
+    }
+
+    // 前端回调页面
+    public function alipayReturn()
+    {
+        // 校验提交的参数是否合法
+        $data = app('alipay')->callback();
+        dd($data);
+    }
+
+    // 服务器端回调
+    public function alipayNotify()
+    {
+        $data = app('alipay')->callback();
+        \Log::debug('Alipay notify', $data->all());
+    }
+}

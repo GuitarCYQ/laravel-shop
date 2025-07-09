@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
 
         // 往服务容器中注入一个名为 alipay 的单例对象 use ($config) 是继承前面$config设置的配置
         $this->app->singleton('alipay', function() use ($config){
-            $config['alipay']['default']['notify_url']   = route('payment.alipay.notify');
+            $config['alipay']['default']['notify_url']   = ngrok_url('payment.alipay.notify');
             $config['alipay']['default']['return_url']   = route('payment.alipay.return');
             // dd($config);
             //调用Yansongda\Pay来创建一个支付宝支付对象

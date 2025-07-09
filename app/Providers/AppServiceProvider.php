@@ -62,6 +62,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('wechat_pay', function() use ($config) {
+            $config['wechat']['default']['notify_url']   = ngrok_url('payment.wechat.notify');
+
             // 调用 Yansongda\Pay 来创建一个微信支付对象
             return Pay::wechat($config);
         });

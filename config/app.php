@@ -126,6 +126,9 @@ return [
     // 订单延迟时间
     'order_ttl' => 1800, //秒
 
+    // ngrok 内网穿透地址
+    'ngrok_url' => env('NGROK_URL'),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

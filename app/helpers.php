@@ -9,6 +9,9 @@ function route_class(){
 
 /**
  * 本地开发环境时，支付回调就会被发往 Ngrok 的域名然后映射到站点
+ * $url 就获取.env文件下的穿透的网址
+ * route($routeName, $parameters, false)
+ *  $routeName ： route/web.php下的路由的别名name
  * 而正式环境的时候 ngrok_url() 函数的作用与 route() 函数一致 不会影响到其他
  */
 

@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Excepations\InvalidRequestException;
 use Carbon\Carbon;
 use Endroid\QrCode\QrCode;
+use App\Events\OrderPaid;
 
 class PaymentController extends Controller
 {
@@ -75,6 +76,8 @@ class PaymentController extends Controller
             'payment_no'        =>  $data->trade_no //支付宝订单号
         ]);
 
+        $this->afterPaid($order);
+
         return app('alipay')->success();
     }
 
@@ -98,7 +101,7 @@ class PaymentController extends Controller
         // 因为微信支付返回的是一串字符串，需要把字符串转换成二维码扫描
         $qrCode = new QrCode($wechatOrder->code_url);
 
-        // 将生成的二维码图片数据以字符串的形式输出，并带上相应的响应类型
+        // 将生成的二维码图片数据以字符串的形式输出，并带上相应的响应类型 , 响应头：指定内容类型为图片格式
         return response($qrCode->writeString(), 200, ['Content-Type' => $qrCode->getContentType()]);
     }
 
@@ -126,6 +129,12 @@ class PaymentController extends Controller
             'payment_to'        =>  $data->transaction_id,
         ]);
 
+        $this->afterPaid($order);
+
         return app('wechat_pay')->success();
+    }
+
+    protected function afterPaid(Order $order){
+        event(new OrderPaid($order));
     }
 }

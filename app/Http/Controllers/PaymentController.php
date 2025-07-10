@@ -76,6 +76,7 @@ class PaymentController extends Controller
             'payment_no'        =>  $data->trade_no //支付宝订单号
         ]);
 
+        // 收集订单的信息
         $this->afterPaid($order);
 
         return app('alipay')->success();
@@ -129,6 +130,7 @@ class PaymentController extends Controller
             'payment_to'        =>  $data->transaction_id,
         ]);
 
+        // 收集订单的信息
         $this->afterPaid($order);
 
         return app('wechat_pay')->success();

@@ -10,7 +10,7 @@ use Encore\Admin\Show;
 use Encore\Admin\Layout\Content;
 use Illuminate\Http\Request;
 use App\Exceptions\InvalidRequestException;
-use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests; # 校验类
 
 class OrdersController extends AdminController
 {
@@ -87,7 +87,7 @@ class OrdersController extends AdminController
             throw new InvalidRequestException('该订单已发货');
         }
 
-        // Laravel 5.5 之后 validate 方法可以返回校验过的值
+        // 校验 物流公司和物流单号 ，必填
         $data = $this->validate($request, [
             'express_company'   =>  ['required'],
             'express_no'        =>  ['required'],
@@ -107,6 +107,8 @@ class OrdersController extends AdminController
         // 返回上一页
         return redirect()->back();
     }
+
+
 
 
 

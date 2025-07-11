@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Event;
 use App\Events\OrderPaid;
 use App\Listeners\UpdateProductSoldCount;
 use App\Listeners\SendOrderPaidMail;
+use App\Events\OrderReviewed;
+use App\Listeners\UpdateProductRating;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,9 @@ class EventServiceProvider extends ServiceProvider
             UpdateProductSoldCount::class,
             SendOrderPaidMail::class,
         ],
+        OrderReviewed::class => [
+            UpdateProductRating::class,
+        ]
     ];
 
     /**

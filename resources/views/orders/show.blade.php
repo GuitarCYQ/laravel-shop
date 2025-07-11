@@ -182,7 +182,7 @@
           return;
         }
         // 请求退款接口
-        axios.post('{{ route('orders.apply_refund', [$order->id]) }}', {respon: input})
+        axios.post('{{ route('orders.apply_refund', [$order->id]) }}', {reason: input})
         .then(function () {
           swal('申请退款成功', '', 'success').then(function () {
             // 用户点击弹框上的按钮时，重新加载页面

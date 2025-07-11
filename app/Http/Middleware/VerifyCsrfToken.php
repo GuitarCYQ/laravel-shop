@@ -14,6 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         // 添加白名单 url 能够匹配到 $except 里的任意一项，laravel就不会去查 CSRF_TOKEN
         'payment/alipay/notify',
-        'payment/wechat/notify'
+        'payment/wechat/notify',
+        'payment/wechat/refund_notify'
     ];
 }

@@ -28,6 +28,10 @@ return [
             'app_auth_token' => '',
             // 「选填」服务商模式下的服务商 id，当 mode 为 Pay::MODE_SERVICE 时使用该参数
             'service_provider_id' => '',
+            'curl_options'  =>  [
+                CURLOPT_CONNECTTIMEOUT => 30, // 连接超时（秒）
+                CURLOPT_TIMEOUT => 60,        // 请求超时（秒）
+            ],
 
         ]
     ],

@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth','verified']],function() {
     Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
 
 
+    # 优惠券
+    Route::get('coupon_codes/{order}', 'CouponCodesController@show')->name('coupon_codes.show');
 
 
 
